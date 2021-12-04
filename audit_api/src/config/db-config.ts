@@ -1,3 +1,10 @@
+import dotenv from 'dotenv';
+const result = dotenv.config()
+
+if (result.error) {
+  throw result.error
+}
+// console.log("migrate page result.parsed", result.parsed);
 
 console.log('process.env.DB_HOST:', process.env.DB_HOST)
 console.log('process.env.DB_USER:', process.env.DB_USER)
@@ -11,7 +18,7 @@ const sequalizeOptions = {
         "timestamps": false
     },
     "charset": "utf8",
-    "collate": "utf8_general_ci",
+    // "collate": "utf8_general_ci",
     "logging": false,
     "dialect": "mysql",
     "port": process.env.DB_PORT,

@@ -1,5 +1,13 @@
 import sequelize from "./config/sequelize";
-import Member from "./models/member_model";
+import Site from "./models/site_model";
+import dotenv from 'dotenv';
+const result = dotenv.config()
+
+if (result.error) {
+  throw result.error
+}
+// console.log("migrate page result.parsed", result.parsed);
+
 
 
 
@@ -16,7 +24,7 @@ if (!migrationStatus || (migrationStatus !== migrationTypeUP) && (migrationStatu
 }
 
 export const syncAllModel = () => {
-    Member.findByPk(1);
+    Site.findByPk(1);
 };
 
 const printErrorAndExit = (businessErrMessage: string, err: Error) => {

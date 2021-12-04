@@ -4,7 +4,7 @@ const result = dotenv.config()
 if (result.error) {
   throw result.error
 }
-console.log(result.parsed);
+// console.log("result.parsed", result.parsed);
 
 
 import express from "express";
