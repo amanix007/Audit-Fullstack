@@ -6,9 +6,11 @@ import sequelize from "../config/sequelize";
 export interface SiteInterface {
     id?: number;
     name: string;
-    age: number;
-    email: string;
-    fileName: string;
+    city: string;
+    description: string;
+    latitude: number;
+    longitude: number;
+
     createdAt?: Date;
     updatedAt?: Date;
 }
@@ -16,9 +18,11 @@ export interface SiteInterface {
 class Site extends Model implements SiteInterface {
     public id?: number;
     public name!: string;
-    public age!: number;
-    public email!: string;
-    public fileName!: string;
+    public city!: string;
+    public description!: string;
+    public latitude!: number;
+    public longitude!: number;
+
     public readonly createdAt?: Date;
     public readonly updatedAt?: Date;
 }
@@ -36,6 +40,13 @@ Site.init({
         },
         allowNull: false,
     },
+    city: {
+        type: new DataTypes.STRING,
+        validate: {
+            notEmpty: true
+        },
+        allowNull: false,
+    },
     address: {
         type: new DataTypes.STRING,
         validate: {
@@ -43,8 +54,8 @@ Site.init({
         },
         allowNull: false,
     },
-  
-    
+
+
     description: {
         type: new DataTypes.STRING,
         validate: {
@@ -52,30 +63,30 @@ Site.init({
         },
         allowNull: false,
     },
-  
-    
+
+
     latitude: {
-        type: new DataTypes.INTEGER,
+        type: new DataTypes.BIGINT,
         validate: {
             notEmpty: true
         },
         allowNull: false,
     },
     longitude: {
-        type: new DataTypes.INTEGER,
+        type: new DataTypes.BIGINT,
         validate: {
             notEmpty: true
         },
         allowNull: false,
     },
-  
-  
-    
+
+
+
 
 }, {
     tableName: "site",
     freezeTableName: true,
-    timestamps: true,
+    timestamps: false,
     underscored: false,
     sequelize,
     modelName: "site"

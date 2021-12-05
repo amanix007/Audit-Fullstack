@@ -1,6 +1,6 @@
 import { Router } from "express";
 import commonRouter from "./common";
-import MemberRouter from "./member/member_router";
+import SiteRouter from "./site/site_router";
 
 const v1 = Router();
 
@@ -10,7 +10,7 @@ v1.use((req, res, next) => {
 });
 
 v1.use("/v1", commonRouter);
-v1.use("/v1/members", MemberRouter);
+v1.use("/v1/site", SiteRouter);
 
 v1.use("*", (req, res) => {
     res.status(404).send({
