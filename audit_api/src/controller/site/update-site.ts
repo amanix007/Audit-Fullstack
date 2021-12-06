@@ -1,23 +1,43 @@
 import { Request, Response } from "express";
-import path from "path";
-import { MemberInterface } from "../../models/member_model";
-import member_service from "../../service/member_service";
+import { SiteInterface } from "../../models/site_model";
+import site_service from "../../service/site_service";
 
+const momentTz = require("moment-timezone");
 
-type Member = {
-    id: number,
-    name: string,
-    age: number,
-    email: string,
-    fileName: string
-}
-const updateMember = async (req: Request, res: Response) => {
+const updateSite = async (req: Request, res: Response) => {
 
 
     try {
-        const { id, name, email, age } = req.body;
+        const {
+            id,
+            name,
+            city,
+            description,
+            latitude,
+            longitude,
+            address,
+            editor_id,
 
-        
+        } = req.body;
+        let siteData = {
+            id,
+            name,
+            city,
+            description,
+            latitude,
+            longitude,
+            address,
+            editor_id,
+            updatedAt: momentTz().tz("Asia/Dhaka").format('YYYY-MM-DD HH:mm:ss'),
+        } as unknown as SiteInterface;
+
+        await site_service.updateSite(siteData as SiteInterface);
+
+        let response = {
+            status: "success",
+            response: {}
+        }
+        res.send(response);
     } catch (error) {
         console.log('error:', error)
 
@@ -25,5 +45,5 @@ const updateMember = async (req: Request, res: Response) => {
     }
 };
 
-export default updateMember;
+export default updateSite;
 

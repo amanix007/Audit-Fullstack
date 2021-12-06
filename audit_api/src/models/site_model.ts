@@ -10,6 +10,8 @@ export interface SiteInterface {
     city: string;
     description: string;
     latitude: number;
+    creator_id: number;
+    editor_id?: number | null;
     longitude: number;
     createdAt: string;
     updatedAt: string;
@@ -20,6 +22,8 @@ class Site extends Model implements SiteInterface {
     public name!: string;
     public city!: string;
     public description!: string;
+    public editor_id?: number;
+    public creator_id!: number;
     public latitude!: number;
     public longitude!: number;
     public createdAt!: string;
@@ -34,6 +38,10 @@ Site.init({
     },
 
     editor_id: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+    },
+    creator_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
     },

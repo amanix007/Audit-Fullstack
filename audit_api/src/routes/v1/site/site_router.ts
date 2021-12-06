@@ -16,9 +16,9 @@ const SiteRouter = Router();
 SiteRouter.post("/create-editor", createEditor);
 SiteRouter.post("/create-site", createSite);
 SiteRouter.put("/update-site", updateSite);
-SiteRouter.get("/get-members", getSites);
-SiteRouter.get("/get-member-details/:id", getSiteDetails);
-SiteRouter.delete("/delete-member/:id", deleteSite);
+SiteRouter.get("/get-sites", getSites);
+SiteRouter.get("/get-site-details/:id", getSiteDetails);
+SiteRouter.delete("/delete-site/:id", deleteSite);
 
 
 export default SiteRouter;

@@ -1,7 +1,6 @@
 import Site, { SiteInterface } from "../models/site_model";
-
 import sequelize from "../config/sequelize";
-import { Op } from "sequelize";
+
 
 
 export const get = async (userID: number): Promise<SiteInterface | null> => {
@@ -16,10 +15,13 @@ export const getSiteList = async (): Promise<SiteInterface[]> => {
 };
 
 export const getSiteDetails = async (id: number): Promise<SiteInterface | null> => {
+    const transaction = await sequelize.transaction({});
+
     return Site.findOne({
         where: {
             id: id
-        }
+        },
+        transaction
     });
 };
 export const deleteSite = async (id: number): Promise<number> => {
