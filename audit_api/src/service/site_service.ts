@@ -4,10 +4,13 @@ import Site, { SiteInterface } from "../models/site_model";
 
 
 
+
+
 export const createSite = async (site: SiteInterface): Promise<{ site: SiteInterface; }> => {
-    return siteRepo.createSite({
+    let data = siteRepo.createSite({
         ...site,
     });
+    return data;
 };
 export const updateSite = async (site: SiteInterface): Promise<void> => {
     return siteRepo.updateSite({
@@ -29,17 +32,15 @@ export const deleteSite = async (id: number): Promise<boolean> => {
     return false;
 };
 
-export const existByEmail = async (email: string): Promise<boolean> => {
-    const mmbr = await siteRepo.getByEmail(email);
-    return mmbr ? true : false;
-};
+
+
 
 
 
 export default {
+  
     createSite,
     updateSite,
-    existByEmail,
     getSiteList,
     getSiteDetails,
     deleteSite

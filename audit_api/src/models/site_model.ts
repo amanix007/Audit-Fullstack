@@ -1,5 +1,6 @@
 import { Model, DataTypes, } from "sequelize";
 import sequelize from "../config/sequelize";
+import Editor from "./editor_model";
 
 
 
@@ -10,9 +11,8 @@ export interface SiteInterface {
     description: string;
     latitude: number;
     longitude: number;
-
-    createdAt?: Date;
-    updatedAt?: Date;
+    createdAt: string;
+    updatedAt: string;
 }
 
 class Site extends Model implements SiteInterface {
@@ -22,9 +22,8 @@ class Site extends Model implements SiteInterface {
     public description!: string;
     public latitude!: number;
     public longitude!: number;
-
-    public readonly createdAt?: Date;
-    public readonly updatedAt?: Date;
+    public createdAt!: string;
+    public updatedAt!: string;
 }
 
 Site.init({
@@ -33,6 +32,12 @@ Site.init({
         primaryKey: true,
         autoIncrement: true,
     },
+
+    editor_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+
     name: {
         type: new DataTypes.STRING,
         validate: {
@@ -79,9 +84,20 @@ Site.init({
         },
         allowNull: false,
     },
-
-
-
+    createdAt: {
+        type: new DataTypes.STRING,
+        validate: {
+            notEmpty: true
+        },
+        allowNull: false,
+    },
+    updatedAt: {
+        type: new DataTypes.STRING,
+        validate: {
+            notEmpty: true
+        },
+        allowNull: false,
+    },
 
 }, {
     tableName: "site",
@@ -91,6 +107,9 @@ Site.init({
     sequelize,
     modelName: "site"
 });
+
+
+
 
 
 export default Site;

@@ -30,13 +30,12 @@ export const deleteSite = async (id: number): Promise<number> => {
     });
 };
 
-export const createSite = async (site: SiteInterface): Promise<{
-    site: SiteInterface;
-}> => {
+export const createSite = async (site: SiteInterface): Promise<{ site: SiteInterface; }> => {
+
     const transaction = await sequelize.transaction({});
     try {
         const _site = await Site.create(site, { transaction });
-
+        console.log('_site:', _site)
         await transaction.commit();
 
         return {
@@ -66,27 +65,9 @@ export const updateSite = async (site: SiteInterface): Promise<void> => {
     }
 };
 
-export const getByEmail = async (email: string): Promise<SiteInterface | null> => {
-    return Site.findOne({
-        where: {
-            email: email
-        }
-    });
-};
 
 
 
-export const getByEmailOrMobileWithProfile = async (email: string, mobileNumber: string): Promise<SiteInterface | null> => {
-    return Site.findOne({
-        where: {
-            mobileNumber,
-            [Op.or]: [{
-                email,
-            }]
-        },
-        include: [Site.associations.profile]
-    });
-};
 
 export const verifyEmailAddress = async (token: string): Promise<any> => {
     return Site.update({
@@ -100,22 +81,14 @@ export const verifyEmailAddress = async (token: string): Promise<any> => {
     );
 };
 
-export const getByToken = async (token: string): Promise<SiteInterface | null> => {
-    return Site.findOne({
-        where: {
-            verificationToken: token
-        }
-    });
-};
+
+
 
 export default {
     createSite,
-    getByEmail,
     getSiteList,
     getSiteDetails,
-    getByEmailOrMobileWithProfile,
     verifyEmailAddress,
-    getByToken,
     deleteSite,
     updateSite
 };

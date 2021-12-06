@@ -18,7 +18,7 @@ const sequalizeOptions = {
         "timestamps": false
     },
     "charset": "utf8",
-    // "collate": "utf8_general_ci",
+    "collate": "utf8_general_ci",
     "logging": false,
     "dialect": "mysql",
     "port": process.env.DB_PORT,

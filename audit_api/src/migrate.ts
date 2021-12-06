@@ -1,6 +1,7 @@
 import sequelize from "./config/sequelize";
 import Site from "./models/site_model";
 import dotenv from 'dotenv';
+import Editor from "./models/editor_model";
 const result = dotenv.config()
 
 if (result.error) {
@@ -24,6 +25,7 @@ if (!migrationStatus || (migrationStatus !== migrationTypeUP) && (migrationStatu
 }
 
 export const syncAllModel = () => {
+    Editor.findByPk(1);
     Site.findByPk(1);
 };
 

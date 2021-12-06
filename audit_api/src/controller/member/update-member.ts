@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import multer from "multer";
 import path from "path";
 import { MemberInterface } from "../../../src/models/member_model";
 import member_service from "../../../src/service/member_service";
