@@ -4,6 +4,12 @@ import Editor from "./editor_model";
 
 
 
+export interface SiteDTO extends SiteInterface {
+    creatorUserName: string;
+    editorUserName: string;
+    
+}
+
 export interface SiteInterface {
     id?: number;
     name: string;
@@ -12,6 +18,8 @@ export interface SiteInterface {
     latitude: number;
     creator_id: number;
     editor_id?: number | null;
+    creatorUserName?: string;
+    editorUserName?: string;
     longitude: number;
     createdAt: string;
     updatedAt: string;
@@ -22,6 +30,8 @@ class Site extends Model implements SiteInterface {
     public name!: string;
     public city!: string;
     public description!: string;
+    public creatorUserName?: string;
+    public editorUserName?: string;
     public editor_id?: number;
     public creator_id!: number;
     public latitude!: number;

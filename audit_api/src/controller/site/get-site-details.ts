@@ -3,13 +3,6 @@ import { SiteInterface } from "../../models/site_model";
 import site_service from "../../service/site_service";
 
 
-type Site = {
-    id: string,
-    name: string,
-    age: number,
-    email: string,
-    fileName: string
-}
 const getSiteDetails = async (req: Request, res: Response) => {
 
     let { id } = req.params;
@@ -18,6 +11,7 @@ const getSiteDetails = async (req: Request, res: Response) => {
     try {
         site = await site_service.getSiteDetails(parseInt(id));
         if (site) {
+            console.log('site:', site)
             res.status(200).send({
                 status: "success",
                 response: site,

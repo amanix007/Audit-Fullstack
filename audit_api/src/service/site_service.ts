@@ -1,5 +1,5 @@
 import siteRepo from "../repo/site_repo";
-import Site, { SiteInterface } from "../models/site_model";
+import Site, { SiteDTO, SiteInterface } from "../models/site_model";
 
 
 
@@ -22,7 +22,7 @@ export const updateSite = async (site: SiteInterface): Promise<void> => {
 export const getSiteList = async (): Promise<SiteInterface[]> => {
     return siteRepo.getSiteList();
 };
-export const getSiteDetails = async (id: number): Promise<SiteInterface | null> => {
+export const getSiteDetails = async (id: number): Promise<SiteDTO | null> => {
     return siteRepo.getSiteDetails(id);
 };
 export const deleteSite = async (id: number): Promise<boolean> => {
@@ -38,7 +38,7 @@ export const deleteSite = async (id: number): Promise<boolean> => {
 
 
 export default {
-  
+
     createSite,
     updateSite,
     getSiteList,

@@ -14,6 +14,7 @@ const createSite = async (req: Request, res: Response) => {
     try {
         const siteData = {
             name, city, description, address, latitude, longitude, creator_id,
+            editor_id: null,
             createdAt: momentTz().tz("Asia/Dhaka").format('YYYY-MM-DD HH:mm:ss'),
             updatedAt: momentTz().tz("Asia/Dhaka").format('YYYY-MM-DD HH:mm:ss'),
         };
