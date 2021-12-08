@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
-import { SiteInterface } from "../../models/site_model";
+import { SiteDTO, SiteInterface } from "../../models/site_model";
 import site_service from "../../service/site_service";
 
 
 const getSiteDetails = async (req: Request, res: Response) => {
 
     let { id } = req.params;
-    let site: SiteInterface | null;
+    let site: SiteDTO | null;
 
     try {
         site = await site_service.getSiteDetails(parseInt(id));
